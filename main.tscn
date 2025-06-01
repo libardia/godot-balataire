@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7en55w5m0go0"]
 
-[ext_resource type="PackedScene" uid="uid://c1c13gh5hej8i" path="res://obj/card.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://b68ibi2btdpq0" path="res://obj/deck.tscn" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Card" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(331, 180)
+[node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(249, 207)

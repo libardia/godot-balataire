@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b68ibi2btdpq0"]
+
+[ext_resource type="Script" uid="uid://desc6xrjd8tqj" path="res://obj/deck.gd" id="1_mskk3"]
+[ext_resource type="Texture2D" uid="uid://1idrmxyau1wc" path="res://img/base.tres" id="2_u3m8g"]
+
+[node name="Deck" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_mskk3")
+
+[node name="Marker" type="Sprite2D" parent="."]
+texture = ExtResource("2_u3m8g")
+centered = false

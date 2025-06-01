@@ -22,6 +22,10 @@ CardBacks="*res://globals/card_backs.gd"
 
 project/assembly_name="balataire"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
