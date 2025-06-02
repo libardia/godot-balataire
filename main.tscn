@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b68ibi2btdpq0" path="res://obj/deck.tscn" id="2_0xm2m"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
+texture_filter = 1
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(249, 207)
+position = Vector2(100, 156)

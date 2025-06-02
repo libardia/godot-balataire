@@ -11,6 +11,8 @@ var suit: int
 var back: int
 @export
 var face_up: bool = false
+@export
+var animation_time: float = 1
 
 @onready
 var face_spr: Sprite2D = $Face
@@ -27,18 +29,14 @@ var target_face_up: bool = false
 
 func _ready() -> void:
     target_face_up = face_up
-    update_faceup()
+    value_spr.texture = ValueMap.VALUES[[rank, suit]]
 
 
 func _process(_delta: float) -> void:
     if not animation_player.is_playing():
         if target_face_up and not face_up:
-            animation_player.play("flip_up")
+            animation_player.play("flip_up", -1, 1 / animation_time, false)
         elif not target_face_up and face_up:
-            animation_player.play_backwards("flip_up")
-    update_faceup()
-
-
-func update_faceup():
+            animation_player.play("flip_up", -1, -1 / animation_time, true)
     face_spr.visible = face_up
     back_spr.visible = not face_up

@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 CardBacks="*res://globals/card_backs.gd"
+ValueMap="*res://globals/value_map.gd"
 
 [dotnet]
 
