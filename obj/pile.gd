@@ -68,8 +68,10 @@ func do_spread():
 
 func _on_card_input(viewport: Node, event: InputEvent, shape_idx: int, card: Card) -> void:
     print(str("card ", card, " clicked in pile"))
-    clicked_cards.push_back(card)
+    if event.is_action_released("select"):
+        clicked_cards.push_back(card)
 
 
 func _on_pile_input(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-    selected.emit()
+    if event.is_action_released("select"):
+        selected.emit()
