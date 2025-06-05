@@ -27,6 +27,6 @@ func _ready() -> void:
         marker.add_child(c)
 
 
-func _on_deck_input(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_deck_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
     if event.is_action_released("select"):
         selected.emit()

@@ -66,12 +66,12 @@ func do_spread():
     respread = false
 
 
-func _on_card_input(viewport: Node, event: InputEvent, shape_idx: int, card: Card) -> void:
+func _on_card_input(_viewport: Node, event: InputEvent, _shape_idx: int, card: Card) -> void:
     print(str("card ", card, " clicked in pile"))
     if event.is_action_released("select"):
         clicked_cards.push_back(card)
 
 
-func _on_pile_input(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_pile_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
     if event.is_action_released("select"):
         selected.emit()
