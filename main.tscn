@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7en55w5m0go0"]
+[gd_scene load_steps=3 format=3 uid="uid://c7en55w5m0go0"]
 
 [ext_resource type="PackedScene" uid="uid://b68ibi2btdpq0" path="res://obj/deck.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d2go4xtbarc41" path="res://obj/pile.tscn" id="2_h2yge"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
 
 [node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(100, 156)
+position = Vector2(60, 70)
+
+[node name="Pile" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(140, 70)

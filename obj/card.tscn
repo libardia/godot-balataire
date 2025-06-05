@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1c13gh5hej8i"]
+[gd_scene load_steps=9 format=3 uid="uid://c1c13gh5hej8i"]
 
 [ext_resource type="Script" uid="uid://cuuulhkvui2c0" path="res://obj/card.gd" id="1_0gfgr"]
 [ext_resource type="Texture2D" uid="uid://b6rgc0garnaln" path="res://img/backs/back-red.tres" id="2_0gfgr"]
@@ -66,6 +66,9 @@ _data = {
 &"flip_up": SubResource("Animation_0gfgr")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gfgr"]
+size = Vector2(69, 93)
+
 [node name="Card" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_0gfgr")
@@ -89,3 +92,9 @@ offset = Vector2(0.5, 0.5)
 position = Vector2(1, 1)
 texture = ExtResource("4_0gfgr")
 offset = Vector2(0.5, 0.5)
+
+[node name="CardClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardClickArea"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_0gfgr")

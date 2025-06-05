@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2go4xtbarc41"]
+
+[ext_resource type="Script" uid="uid://j13ha1rhtg3y" path="res://obj/pile.gd" id="1_cfqiq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cfqiq"]
+size = Vector2(69, 93)
+
+[node name="Pile" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_cfqiq")
+
+[node name="PileClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PileClickArea"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_cfqiq")
+
+[connection signal="input_event" from="PileClickArea" to="." method="_on_pile_input"]

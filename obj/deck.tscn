@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b68ibi2btdpq0"]
+[gd_scene load_steps=4 format=3 uid="uid://b68ibi2btdpq0"]
 
 [ext_resource type="Script" uid="uid://desc6xrjd8tqj" path="res://obj/deck.gd" id="1_mskk3"]
 [ext_resource type="Texture2D" uid="uid://1idrmxyau1wc" path="res://img/base.tres" id="2_u3m8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jswwx"]
+size = Vector2(69, 93)
 
 [node name="Deck" type="Node2D"]
 texture_filter = 1
@@ -10,3 +13,11 @@ script = ExtResource("1_mskk3")
 [node name="Marker" type="Sprite2D" parent="."]
 texture = ExtResource("2_u3m8g")
 offset = Vector2(0.5, 0.5)
+
+[node name="DeckClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckClickArea"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_jswwx")
+
+[connection signal="input_event" from="DeckClickArea" to="." method="_on_deck_input"]

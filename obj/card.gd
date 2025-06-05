@@ -22,14 +22,17 @@ var value_spr: Sprite2D = $Face/Value
 var back_spr: Sprite2D = $Back
 @onready
 var animation_player: AnimationPlayer = $AnimationPlayer
+@onready
+var click_area: Area2D = $CardClickArea
 
 var target_face_up: bool = false
+var pile_index: int = 0
 
 # ==================================================================================================
 
 func _ready() -> void:
     target_face_up = face_up
-    value_spr.texture = ValueMap.VALUES[[rank, suit]]
+    value_spr.texture = ValueMap.VALUE_SPRITES[[rank, suit]]
 
 
 func _process(_delta: float) -> void:

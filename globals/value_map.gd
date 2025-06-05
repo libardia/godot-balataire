@@ -1,6 +1,6 @@
 extends Node
 
-const VALUES: Dictionary = {
+const VALUE_SPRITES: Dictionary = {
     # Hearts
     [0, 0]: preload("res://img/values/2h.tres"),
     [1, 0]: preload("res://img/values/3h.tres"),
