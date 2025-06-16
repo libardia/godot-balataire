@@ -1,13 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7en55w5m0go0"]
+[gd_scene load_steps=5 format=3 uid="uid://c7en55w5m0go0"]
 
+[ext_resource type="Script" uid="uid://c70o58d1xmkpj" path="res://scr/controller.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b68ibi2btdpq0" path="res://obj/deck.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://de5frcpuf6jl6" path="res://layout.gd" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d2go4xtbarc41" path="res://obj/pile.tscn" id="2_h2yge"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
 
-[node name="Deck" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(60, 70)
+[node name="Controller" type="Node" parent="."]
+script = ExtResource("1_h2yge")
 
-[node name="Pile" parent="." instance=ExtResource("2_h2yge")]
-position = Vector2(140, 70)
+[node name="Layout" type="Node" parent="."]
+script = ExtResource("2_1bvp3")
+
+[node name="TopRow" type="Node" parent="Layout"]
+
+[node name="Deck" parent="Layout/TopRow" instance=ExtResource("2_0xm2m")]
+position = Vector2(59, 68)
+
+[node name="Stock" parent="Layout/TopRow" instance=ExtResource("2_h2yge")]
+position = Vector2(149, 72)
+
+[node name="Spacer" type="Node2D" parent="Layout/TopRow"]
+position = Vector2(232, 72)
+
+[node name="HomeSpade" parent="Layout/TopRow" instance=ExtResource("2_h2yge")]
+position = Vector2(326, 72)
+
+[node name="HomeHeart" parent="Layout/TopRow" instance=ExtResource("2_h2yge")]
+position = Vector2(415, 72)
+
+[node name="HomeClub" parent="Layout/TopRow" instance=ExtResource("2_h2yge")]
+position = Vector2(498, 72)
+
+[node name="HomeDiamond" parent="Layout/TopRow" instance=ExtResource("2_h2yge")]
+position = Vector2(588, 72)
+
+[node name="MainPiles" type="Node" parent="Layout"]
+
+[node name="Pile1" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(64, 195)
+
+[node name="Pile2" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(148, 195)
+
+[node name="Pile3" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(243, 195)
+
+[node name="Pile4" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(326, 195)
+
+[node name="Pile5" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(413, 195)
+
+[node name="Pile6" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(504, 195)
+
+[node name="Pile7" parent="Layout/MainPiles" instance=ExtResource("2_h2yge")]
+position = Vector2(593, 195)
+
+[connection signal="selected" from="Layout/TopRow/Deck" to="Controller" method="_on_deck_selected"]
+[connection signal="card_selected" from="Layout/TopRow/Stock" to="Controller" method="_on_pile_card_selected"]
+[connection signal="selected" from="Layout/TopRow/Stock" to="Controller" method="_on_pile_selected"]

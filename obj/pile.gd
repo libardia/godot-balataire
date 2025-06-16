@@ -5,17 +5,13 @@ extends Node2D
 
 ## How many cards are visible on top of the pile.
 ## A value of 0 or less will always spread out all cards.
-@export
-var spread: int = 1
+@export var spread: int = 1
 ## Offset applied to each card when spreading.
-@export
-var spread_offset: Vector2 = Vector2.ZERO
+@export var spread_offset: Vector2 = Vector2.ZERO
 ## Exposed for testing during game
-@export
-var respread: bool = true
+@export var respread: bool = true
 
-@onready
-var click_area: Area2D = $PileClickArea
+@onready var click_area: Area2D = $PileClickArea
 
 var cards: Array[Card] = []
 var clicked_cards: Array[Card] = []

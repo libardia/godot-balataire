@@ -7,23 +7,15 @@ extends Node2D
 var rank: int
 @export_enum("Hearts", "Clubs", "Diamonds", "Spades")
 var suit: int
-@export_range(0, 19)
-var back: int
-@export
-var face_up: bool = false
-@export
-var animation_time: float = 1
+@export_range(0, 19) var back: int
+@export var face_up: bool = false
+@export var animation_time: float = 1
 
-@onready
-var face_spr: Sprite2D = $Face
-@onready
-var value_spr: Sprite2D = $Face/Value
-@onready
-var back_spr: Sprite2D = $Back
-@onready
-var animation_player: AnimationPlayer = $AnimationPlayer
-@onready
-var click_area: Area2D = $CardClickArea
+@onready var face_spr: Sprite2D = $Face
+@onready var value_spr: Sprite2D = $Face/Value
+@onready var back_spr: Sprite2D = $Back
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var click_area: Area2D = $CardClickArea
 
 var target_face_up: bool = false
 var pile_index: int = 0

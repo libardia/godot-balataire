@@ -3,10 +3,8 @@ extends Node2D
 
 # ==================================================================================================
 
-@onready
-var marker: Sprite2D = $Marker
-@onready
-var click_area: Area2D = $DeckClickArea
+@onready var marker: Sprite2D = $Marker
+@onready var click_area: Area2D = $DeckClickArea
 
 var cards: Array[Card] = []
 var card_obj: PackedScene = preload("res://obj/card.tscn")
