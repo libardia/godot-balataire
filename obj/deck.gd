@@ -3,6 +3,8 @@ extends Node2D
 
 # ==================================================================================================
 
+@export var deal_delay: float = 0.1
+
 @onready var marker: Sprite2D = $Marker
 @onready var click_area: Area2D = $DeckClickArea
 
@@ -28,3 +30,9 @@ func _ready() -> void:
 func _on_deck_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
     if event.is_action_released("select"):
         selected.emit()
+
+
+func draw_n(to_pile: Pile, n: int, face_up: bool):
+    for _i in n:
+        var card = cards.pop_back()
+        to_pile.place_card(card, face_up)

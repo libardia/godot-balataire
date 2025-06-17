@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2go4xtbarc41"]
+[gd_scene load_steps=3 format=3 uid="uid://d2go4xtbarc41"]
 
 [ext_resource type="Script" uid="uid://j13ha1rhtg3y" path="res://obj/pile.gd" id="1_cfqiq"]
-[ext_resource type="Texture2D" uid="uid://b7xgiq5cvpisa" path="res://img/backs/back-abandoned.tres" id="2_1smsi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfqiq"]
 size = Vector2(69, 93)
@@ -15,9 +14,5 @@ script = ExtResource("1_cfqiq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PileClickArea"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cfqiq")
-
-[node name="Back-abandoned" type="Sprite2D" parent="."]
-texture = ExtResource("2_1smsi")
-offset = Vector2(0.5, 0.5)
 
 [connection signal="input_event" from="PileClickArea" to="." method="_on_pile_input"]

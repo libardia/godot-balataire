@@ -2,39 +2,39 @@ extends Node
 
 # ==================================================================================================
 
-const ITEM_SIZE = Vector2(69, 93)
-const ITEM_SIZE_H = ITEM_SIZE / 2
-const VERTICAL_MAX = 50
-const VERTICAL_MIN = 0
+@export var reference_texture: Texture2D = null
+@export var vertical_max: float = 50
+@export var vertical_min: float = 0
 
 @onready var topRow: Node2D = $TopRow
 @onready var mainPiles: Node2D = $MainPiles
 
+var item_size: Vector2 = Vector2.ZERO
+var item_size_h: Vector2 = Vector2.ZERO
 var spacing: float = 0
 
 # ==================================================================================================
 
 func _ready() -> void:
+    item_size = reference_texture.get_size()
+    item_size_h = item_size / 2
     do_layout()
     get_viewport().size_changed.connect(do_layout)
 
 
 func do_layout():
     layout_row(topRow)
-    var effective_space = clampf(spacing, VERTICAL_MIN, VERTICAL_MAX)
-    topRow.position.x = 0
-    topRow.position.y = round(effective_space + ITEM_SIZE_H.y)
+    var effective_space = clampf(spacing, vertical_min, vertical_max)
+    topRow.position = Vector2(0, roundf(effective_space + item_size_h.y))
     layout_row(mainPiles)
-    mainPiles.position.x = 0
-    mainPiles.position.y = round(effective_space * 2 + ITEM_SIZE_H.y * 3)
+    mainPiles.position = Vector2(0, roundf(effective_space * 2 + item_size_h.y * 3))
 
 
 func layout_row(containerNode: Node2D):
     var n = containerNode.get_child_count()
     var total_width = get_viewport().get_visible_rect().size.x
-    spacing = (total_width - ITEM_SIZE.x * n) / (n + 1)
+    spacing = (total_width - item_size.x * n) / (n + 1)
     for i in n:
         var child = containerNode.get_child(i) as Node2D
-        var x_raw = (i + 1) * spacing + i * ITEM_SIZE.x + ITEM_SIZE_H.x
-        child.position.x = roundf(x_raw)
-        child.position.y = 0
+        var x_raw = (i + 1) * spacing + (2 * i + 1) * item_size_h.x
+        child.position = Vector2(roundf(x_raw), 0)

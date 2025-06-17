@@ -18,6 +18,7 @@ var suit: int
 @onready var click_area: Area2D = $CardClickArea
 
 var target_face_up: bool = false
+var pile: Pile = null
 var pile_index: int = 0
 
 # ==================================================================================================

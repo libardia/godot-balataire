@@ -2,17 +2,14 @@ extends Node
 
 # ==================================================================================================
 
-
+@onready var deck: Deck = $Layout/TopRow/Deck
+@onready var stock: Pile = $Layout/TopRow/Stock
 
 # ==================================================================================================
 
 func _on_deck_selected() -> void:
-    pass # Replace with function body.
+    deck.draw_n(stock, 3, true)
 
 
-func _on_pile_selected() -> void:
-    pass # Replace with function body.
-
-
-func _on_pile_card_selected(card: Card) -> void:
-    pass # Replace with function body.
+func _on_stock_card_selected() -> void:
+    pass

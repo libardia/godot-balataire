@@ -8,6 +8,9 @@ extends Node2D
 @export var spread: int = 1
 ## Offset applied to each card when spreading.
 @export var spread_offset: Vector2 = Vector2.ZERO
+## When set, only the top card is clickable, even if more face-up cards are spread.
+## Used for the stock.
+@export var only_top_card_clickable: bool = false
 ## Exposed for testing during game
 @export var respread: bool = true
 
@@ -37,17 +40,26 @@ func _process(_delta: float) -> void:
         card_selected.emit(lowest)
 
 
-func place_pile(pile: Pile):
-    for card in pile.cards:
-        place_card(card)
-
-
-func place_card(card: Card):
-    card.reparent(self, false)
-    card.click_area.input_event.connect(_on_card_input.bind(card))
+func place_card(card: Card, face_up: bool):
+    card.reparent(self)
+    card.target_face_up = face_up
+    card.pile = self
     card.pile_index = len(cards)
     cards.push_back(card)
     respread = true
+
+
+func move_cards_from(new_pile: Pile, index: int, face_up: bool):
+    var eff_index = mini(index, 0)
+    var to_move = cards.slice(eff_index)
+    cards = cards.slice(0, eff_index)
+    for card in to_move:
+        new_pile.place_card(card, face_up)
+    respread = true
+
+
+func move_n_cards(new_pile: Pile, num_cards: int, face_up: bool):
+    move_cards_from(new_pile, len(cards) - num_cards, face_up)
 
 
 func do_spread():
@@ -57,8 +69,10 @@ func do_spread():
     var thresh = len(cards) - eff_spread
     for i in len(cards):
         var card = cards[i]
-        card.click_area.input_pickable = i >= thresh
+        card.click_area.input_pickable = i >= thresh and card.target_face_up and not only_top_card_clickable
         card.position = spread_offset * max(0, i - thresh)
+    if only_top_card_clickable and not cards.is_empty():
+        cards.back().click_area.input_pickable = true
     respread = false
 
 
