@@ -1,30 +1,25 @@
 class_name Deck
-extends Node2D
+extends Pile
 
 # ==================================================================================================
 
-@export var deal_delay: float = 0.1
-
-@onready var marker: Sprite2D = $Marker
-@onready var click_area: Area2D = $DeckClickArea
-
-var cards: Array[Card] = []
 var card_obj: PackedScene = preload("res://obj/card.tscn")
-
-signal selected
 
 # ==================================================================================================
 
 func _ready() -> void:
+    var new_cards = []
     for rank in 13:
         for suit in 4:
             var c: Card = card_obj.instantiate()
             c.rank = rank
             c.suit = suit
-            cards.push_back(c)
-    cards.shuffle()
-    for c in cards:
-        marker.add_child(c)
+            c.name = str("Card-", rank, "-", suit)
+            new_cards.push_back(c)
+    new_cards.shuffle()
+    for c in new_cards:
+        add_child(c)
+        place_card(c, false)
 
 
 func _on_deck_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -36,3 +31,4 @@ func draw_n(to_pile: Pile, n: int, face_up: bool):
     for _i in n:
         var card = cards.pop_back()
         to_pile.place_card(card, face_up)
+        respread = true

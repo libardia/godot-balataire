@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh5x4lbb8515k"]
+
+[ext_resource type="Texture2D" uid="uid://cdpvxgjlo3op2" path="res://img/face.tres" id="1_fpj3r"]
+
+[node name="CardSpot" type="Sprite2D"]
+self_modulate = Color(0.423651, 0.423651, 0.423651, 0.647059)
+texture_filter = 1
+texture = ExtResource("1_fpj3r")
+offset = Vector2(0.5, 0.5)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2go4xtbarc41"]
+[gd_scene load_steps=4 format=3 uid="uid://d2go4xtbarc41"]
 
 [ext_resource type="Script" uid="uid://j13ha1rhtg3y" path="res://obj/pile.gd" id="1_cfqiq"]
+[ext_resource type="PackedScene" uid="uid://bh5x4lbb8515k" path="res://obj/card_spot.tscn" id="2_1smsi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfqiq"]
 size = Vector2(69, 93)
@@ -8,6 +9,9 @@ size = Vector2(69, 93)
 [node name="Pile" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_cfqiq")
+
+[node name="CardSpot" parent="." instance=ExtResource("2_1smsi")]
+self_modulate = Color(0.423651, 0.423651, 0.423651, 0.647059)
 
 [node name="PileClickArea" type="Area2D" parent="."]
 

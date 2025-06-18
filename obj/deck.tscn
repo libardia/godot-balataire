@@ -1,23 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://b68ibi2btdpq0"]
 
 [ext_resource type="Script" uid="uid://desc6xrjd8tqj" path="res://obj/deck.gd" id="1_mskk3"]
-[ext_resource type="Texture2D" uid="uid://1idrmxyau1wc" path="res://img/base.tres" id="2_u3m8g"]
+[ext_resource type="PackedScene" uid="uid://bh5x4lbb8515k" path="res://obj/card_spot.tscn" id="3_mskk3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jswwx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3m8g"]
 size = Vector2(69, 93)
 
 [node name="Deck" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_mskk3")
 
-[node name="Marker" type="Sprite2D" parent="."]
-texture = ExtResource("2_u3m8g")
-offset = Vector2(0.5, 0.5)
+[node name="CardSpot" parent="." instance=ExtResource("3_mskk3")]
+self_modulate = Color(0.423651, 0.423651, 0.423651, 0.647059)
 
-[node name="DeckClickArea" type="Area2D" parent="."]
+[node name="PileClickArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckClickArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PileClickArea"]
 position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_jswwx")
+shape = SubResource("RectangleShape2D_u3m8g")
 
-[connection signal="input_event" from="DeckClickArea" to="." method="_on_deck_input"]
+[connection signal="input_event" from="PileClickArea" to="." method="_on_pile_input"]

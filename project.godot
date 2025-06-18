@@ -16,7 +16,9 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
-ValueMap="*res://globals/value_map.gd"
+ValueMap="*res://scr/value_map.gd"
+CardTweener="*res://scr/card_tweener.gd"
+TimerHelper="*res://scr/timer_helper.gd"
 
 [display]
 

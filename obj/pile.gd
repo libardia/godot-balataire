@@ -66,11 +66,12 @@ func do_spread():
     # eff_spread will always be at least 1 if the list is not empty,
     # so this should never give an out-of-bounds error
     var eff_spread = len(cards) if spread <= 0 else spread
-    var thresh = len(cards) - eff_spread
+    var thresh = max(0, len(cards) - eff_spread)
     for i in len(cards):
         var card = cards[i]
         card.click_area.input_pickable = i >= thresh and card.target_face_up and not only_top_card_clickable
-        card.position = spread_offset * max(0, i - thresh)
+        CardTweener.tween(card, spread_offset * max(0, i - thresh))
+        #card.position = spread_offset * max(0, i - thresh)
     if only_top_card_clickable and not cards.is_empty():
         cards.back().click_area.input_pickable = true
     respread = false

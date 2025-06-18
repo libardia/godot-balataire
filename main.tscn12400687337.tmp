@@ -11,7 +11,7 @@ texture_filter = 1
 
 [node name="Controller" type="Node" parent="."]
 script = ExtResource("1_h2yge")
-deal_delay = 0.21
+deal_delay = 0.2
 
 [node name="Layout" type="Node" parent="Controller"]
 script = ExtResource("2_1bvp3")
@@ -21,7 +21,6 @@ reference_texture = ExtResource("3_lquwl")
 
 [node name="Deck" parent="Controller/Layout/TopRow" instance=ExtResource("2_0xm2m")]
 position = Vector2(59, 68)
-only_top_card_clickable = true
 
 [node name="Stock" parent="Controller/Layout/TopRow" instance=ExtResource("2_h2yge")]
 position = Vector2(149, 72)
