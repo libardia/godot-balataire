@@ -3,10 +3,8 @@ extends Node2D
 
 # ==================================================================================================
 
-@export_enum("2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace")
-var rank: int
-@export_enum("Hearts", "Clubs", "Diamonds", "Spades")
-var suit: int
+@export var rank: Values.Ranks
+@export var suit: Values.Suits
 @export_range(0, 19) var back: int
 @export var face_up: bool = false
 @export var animation_time: float = 1

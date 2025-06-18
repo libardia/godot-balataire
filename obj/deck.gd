@@ -9,8 +9,8 @@ var card_obj: PackedScene = preload("res://obj/card.tscn")
 
 func _ready() -> void:
     var new_cards = []
-    for rank in 13:
-        for suit in 4:
+    for rank in Values.Ranks.values():
+        for suit in Values.Suits.values():
             var c: Card = card_obj.instantiate()
             c.rank = rank
             c.suit = suit
