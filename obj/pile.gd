@@ -3,11 +3,15 @@ extends Node2D
 
 # ==================================================================================================
 
+var logger := LogUtil.make_logger(self)
+
 ## How many cards are visible on top of the pile.
 ## A value of 0 or less will always spread out all cards.
 @export var spread: int = 1
-## Offset applied to each card when spreading.
-@export var spread_offset: Vector2 = Vector2.ZERO
+## Offset applied to each card when spreading face-up cards.
+@export var face_up_spread_offset: Vector2 = Vector2.ZERO
+## Offset applied to each card when spreading face-down cards.
+@export var face_down_spread_offset: Vector2 = Vector2.ZERO
 ## When set, only the top card is clickable, even if more face-up cards are spread.
 ## Used for the stock.
 @export var only_top_card_clickable: bool = false
@@ -67,18 +71,22 @@ func do_spread():
     # so this should never give an out-of-bounds error
     var eff_spread = len(cards) if spread <= 0 else spread
     var thresh = max(0, len(cards) - eff_spread)
+    logger.log(str("Spread: ", eff_spread, ", ", " Thresh: ", thresh))
+    var next_position := Vector2.ZERO
     for i in len(cards):
         var card = cards[i]
         card.click_area.input_pickable = i >= thresh and card.target_face_up and not only_top_card_clickable
-        CardTweener.tween(card, spread_offset * max(0, i - thresh))
-        #card.position = spread_offset * max(0, i - thresh)
+        CardTweener.tween(card, next_position)
+        if i >= thresh:
+            var offset := face_up_spread_offset if card.target_face_up else face_down_spread_offset
+            next_position += offset
     if only_top_card_clickable and not cards.is_empty():
         cards.back().click_area.input_pickable = true
     respread = false
 
 
 func _on_card_input(_viewport: Node, event: InputEvent, _shape_idx: int, card: Card) -> void:
-    print(str("card ", card, " clicked in pile"))
+    logger.log("card % clicked in pile" % card.name)
     if event.is_action_released("select"):
         clicked_cards.push_back(card)
 

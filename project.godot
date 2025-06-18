@@ -16,10 +16,15 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
+LogUtil="*res://scr/log_util.gd"
 ValueMap="*res://scr/value_map.gd"
 CardTweener="*res://scr/card_tweener.gd"
 TimerHelper="*res://scr/timer_helper.gd"
 Values="*res://scr/values.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
 
 [display]
 
