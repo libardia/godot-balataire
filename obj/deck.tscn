@@ -9,6 +9,7 @@ size = Vector2(69, 93)
 [node name="Deck" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_mskk3")
+none_clickable = true
 
 [node name="CardSpot" parent="." instance=ExtResource("3_mskk3")]
 

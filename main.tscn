@@ -11,6 +11,7 @@
 texture_filter = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Label" type="Label" parent="UI"]
 offset_right = 40.0
@@ -26,6 +27,8 @@ layer = 0
 [node name="Controller" type="Node" parent="Game"]
 script = ExtResource("1_h2yge")
 stock_deal_delay = 0.2
+initial_deal_delay = 0.1
+holding_offset = Vector2(0, 30)
 
 [node name="Layout" type="Node" parent="Game/Controller"]
 script = ExtResource("2_1bvp3")
@@ -35,6 +38,8 @@ reference_texture = ExtResource("3_lquwl")
 
 [node name="Deck" parent="Game/Controller/Layout/TopRow" instance=ExtResource("2_0xm2m")]
 position = Vector2(59, 68)
+spread = 0
+face_down_spread_offset = Vector2(-0.2, -0.2)
 only_top_card_clickable = true
 
 [node name="Stock" parent="Game/Controller/Layout/TopRow" instance=ExtResource("2_h2yge")]
@@ -102,5 +107,14 @@ spread = 0
 face_up_spread_offset = Vector2(0, 25)
 face_down_spread_offset = Vector2(0, 8)
 
+[node name="Holding" parent="Game/Controller" instance=ExtResource("2_h2yge")]
+z_index = 2
+position = Vector2(299, 387)
+spread = 0
+face_up_spread_offset = Vector2(0, 20)
+none_clickable = true
+
 [connection signal="selected" from="Game/Controller/Layout/TopRow/Deck" to="Game/Controller" method="_on_deck_selected"]
 [connection signal="card_selected" from="Game/Controller/Layout/TopRow/Stock" to="Game/Controller" method="_on_stock_card_selected"]
+
+[editable path="Game/Controller/Holding"]

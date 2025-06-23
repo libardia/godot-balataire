@@ -27,7 +27,7 @@ func _on_deck_input(_viewport: Node, event: InputEvent, _shape_idx: int) -> void
         selected.emit()
 
 
-func draw_n(to_pile: Pile, n: int, face_up: bool):
+func draw_n(to_pile: Pile, n: int, face_up: bool = true):
     for _i in n:
         var card = cards.pop_back()
         to_pile.place_card(card, face_up)
