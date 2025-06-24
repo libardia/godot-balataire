@@ -18,6 +18,9 @@ extends Node2D
 var target_face_up: bool = false
 var pile: Pile = null
 var pile_index: int = 0
+var clickable: bool = true
+
+signal selected_card(card: Card, pressed: bool)
 
 # ==================================================================================================
 
@@ -34,3 +37,10 @@ func _process(_delta: float) -> void:
             animation_player.play("flip_up", -1, -1 / animation_time, true)
     face_spr.visible = face_up
     back_spr.visible = not face_up
+
+
+func _unhandled_input(event: InputEvent) -> void:
+    if event.is_action(&"select") and clickable:
+        if face_spr.get_rect().has_point(to_local(event.position)):
+            selected_card.emit(self, event.is_pressed())
+            print("rect-based click event")
